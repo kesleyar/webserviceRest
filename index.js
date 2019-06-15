@@ -20,8 +20,9 @@ const errs = require('restify-errors');
 server.use(restify.plugins.acceptParser(server.acceptable));
 server.use(restify.plugins.queryParser());
 server.use(restify.plugins.bodyParser());
+var porta = process.env.PORT;
 
-server.listen(3306, function () {
+server.listen(porta, function () {
     console.log('%s listening at %s', server.name, server.url);
 });
 
