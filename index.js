@@ -8,10 +8,10 @@ const server = restify.createServer({
 var knex = require('knex')({
     client: 'mysql',
     connection: {
-        host: '127.0.0.1',
-        user: 'root',
-        password: '',
-        database: 'vagas-emp'
+        host: 'u0zbt18wwjva9e0v.cbetxkdyhwsb.us-east-1.rds.amazonaws.com',
+        user: 'cvsifa9wgrawbkv2',
+        password: 'wzd2kvhuoo98027x',
+        database: '	lev5vlhpma5n0mu6'
     }
 });
 
