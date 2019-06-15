@@ -11,7 +11,7 @@ var knex = require('knex')({
         host: 'u0zbt18wwjva9e0v.cbetxkdyhwsb.us-east-1.rds.amazonaws.com',
         user: 'cvsifa9wgrawbkv2',
         password: 'wzd2kvhuoo98027x',
-        database: '	lev5vlhpma5n0mu6'
+        database: 'lev5vlhpma5n0mu6'
     }
 });
 
