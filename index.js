@@ -113,8 +113,6 @@ server.get('/positions.json', (req, res, next) => {
                         res.send(dados);
                     }, next)
             }
-
-
         } else {
             //um parametro periodo
             console.log('um parametro periodo');
