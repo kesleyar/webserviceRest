@@ -1,0 +1,132 @@
+
+server.get('/?descricao:description', (req, res, next) => {
+    const { description } = req.params;
+
+    knex('vaga').where('descricao', description).then((dados) => {
+        if (!dados) return res.send(new errs.BadRequestError('Nenhum registro encontrado'));
+        res.send(dados);
+    }, next)
+});
+
+server.get('/?local:location', (req, res, next) => {
+    const { location } = req.params;
+
+    knex('vaga').where('cidade', location).then((dados) => {
+        if (!dados) return res.send(new errs.BadRequestError('Nenhum registro encontrado'));
+        res.send(dados);
+    }, next)
+});
+
+server.get('/descricao/:description', (req, res, next) => {
+    const { description } = req.params;
+
+    knex('vaga').where('descricao', description).then((dados) => {
+        if (!dados) return res.send(new errs.BadRequestError('Nenhum registro encontrado'));
+        res.send(dados);
+    }, next)
+});
+
+server.get('/local/:location', (req, res, next) => {
+    const { location } = req.params;
+
+    knex('vaga').where('cidade', location).then((dados) => {
+        if (!dados) return res.send(new errs.BadRequestError('Nenhum registro encontrado'));
+        res.send(dados);
+    }, next)
+});
+
+server.get('/periodo/:full_time', (req, res, next) => {
+    const { full_time } = req.params;
+
+    knex('vaga').where('periodo', full_time).then((dados) => {
+        if (!dados) return res.send(new errs.BadRequestError('Nenhum registro encontrado'));
+        res.send(dados);
+    }, next)
+});
+
+/*
+server.post('/create', (req, res, next) => {
+    knex('vaga').insert(req.body).then((dados) => {
+        res.send(dados);
+    }, next)
+});
+*/
+
+
+/positions.json?description=java&location=jundiai&full_time=true
+
+
+server.get('/positions.json/:description/:location/:full_time', (req, res, next) => {
+    const { description } = req.params;
+    const { location } = req.params;
+    const { full_time } = req.params;
+
+    if (!full_time) {
+        full_time = 0;
+    } else {
+        full_time = 1;
+    }
+
+    knex('vaga').whereRaw('descricao like \'%??%\' cidade like \'%??%\' periodo like \'%??%\'', [description, location, full_time]).then((dados) => {
+        if (!dados) return res.send(new errs.BadRequestError('Nenhum registro encontrado'));
+        res.send(dados);
+    }, next)
+});
+
+
+server.get('/positions.json?description=blabla&location=bla&full_time=true', (req, res, next) => {
+    const { description } = req.params;
+    const { location } = req.params;
+    const { full_time } = req.params;
+
+    if (!full_time) {
+        full_time = 0;
+    } else {
+        full_time = 1;
+    }
+
+    knex('vaga').whereRaw('descricao like \'%??%\' cidade like \'%??%\' periodo like \'%??%\'', [description, location, full_time]).then((dados) => {
+        if (!dados) return res.send(new errs.BadRequestError('Nenhum registro encontrado'));
+        res.send(dados);
+    }, next)
+});
+
+
+server.post('/positions.json', (req, res, next) => {
+    var aux;
+    if (req.body) {
+        const { description, location, full_time } = req.params;
+        if (!full_time) {
+            aux = 0;
+        } else {
+            aux = 1;
+        }
+    }
+
+    knex('vaga').where('descricao', description).orWhere('cidade', location).Where('full_time', aux).then((dados) => {
+        if (!dados) return res.send(new errs.BadRequestError('Nenhum registro encontrado'));
+        res.send(dados);
+    }, next)
+});
+
+
+select * from `vaga` where `descricao` like 'java' or `cidade` like 'jundiai' or `periodo` like '0';
+
+
+
+server.get('/:description/:location/:full_time', (req, res, next) => {
+    const { description } = req.params;
+    const { location } = req.params;
+    const { full_time } = req.params;
+
+    if (!full_time) {
+        full_time = 0;
+    } else {
+        full_time = 1;
+    }
+
+    knex('vaga').where('descricao', description).Where('cidade', location).Where('full_time', full_time).then((dados) => {
+        if (!dados) return res.send(new errs.BadRequestError('Nenhum registro encontrado'));
+        res.send(dados);
+    }, next)
+});

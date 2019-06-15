@@ -1,0 +1,10 @@
+vagas-emp{
+    vaga{
+        id;
+        empresa;
+        descrição;
+        cidade;
+        periodo (integral: true, meio periodo: false);
+    }
+
+}
